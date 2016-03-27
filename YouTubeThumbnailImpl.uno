@@ -62,10 +62,9 @@ public class YouTubeThumbnailImpl : Fuse.iOS.Controls.Control<YouTubeThumbnail> 
 	[Foreign(Language.ObjC)]
 	public ObjC.ID CreateImpl () 
 	@{
-		// YTPlayerView *ytpv = [[YTPlayerView alloc] init];
-		YTPlayerView *ytpv = [YTPlayerView loadWithVideoId:@"M7lc1UVf-VE"];
+		YTPlayerView *ytpv = [[YTPlayerView alloc] init];
+		[ytpv loadWithVideoId:@"M7lc1UVf-VE"];
 		return ytpv;
-		// return nil;
 	@}
 
 	protected override void Attach()

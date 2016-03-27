@@ -1,7 +1,6 @@
 <Package>
 <Extensions Backend="CPlusPlus" Condition="iOS">
     <ProcessFile Name="Podfile" />
-    <Require LinkLibrary="youtube-ios-player-helper" />
 </Extensions>
 
 </Package>
