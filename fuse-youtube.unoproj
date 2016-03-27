@@ -24,7 +24,8 @@
         "FuseCore",
         "Uno.Collections",
         "Uno.Geometry",
-        "Android"
+        "Android",
+        "Experimental.iOS"
   ],
   "Includes": [
     "*.ux",
