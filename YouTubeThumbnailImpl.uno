@@ -1,4 +1,5 @@
 using Uno;
+using Uno.UX;
 using Uno.Collections;
 using Fuse;
 using Uno.Compiler.ExportTargetInterop;
@@ -48,33 +49,56 @@ extern (iOS)
 public class YouTubeThumbnailImpl : Fuse.iOS.Controls.Control<YouTubeThumbnail> {
 
 	iOS.UIKit.UIView _view;
+	ObjC.ID ytid;
 
 	internal override UIView CreateInternal()
 	{
 		if (_view == null)
 		{
-			ObjC.ID ytid = CreateImpl();
+			ytid = CreateView();
 			_view = new iOS.UIKit.UIView(ytid);
 		}
 		return _view;
 	}
 
 	[Foreign(Language.ObjC)]
-	public ObjC.ID CreateImpl () 
+	public ObjC.ID CreateView ()
 	@{
 		YTPlayerView *ytpv = [[YTPlayerView alloc] init];
-		[ytpv loadWithVideoId:@"M7lc1UVf-VE"];
 		return ytpv;
+	@}
+
+	[Foreign(Language.ObjC)]
+	public void LoadVideoId (ObjC.ID ytpv, string videoid)
+	@{
+		[ytpv loadWithVideoId:videoid];
 	@}
 
 	protected override void Attach()
 	{
-		// CreateInternal();
+		CreateInternal();
+		LoadVideoId(ytid, SemanticControl.Id);
+		SemanticControl.IdChanged += OnIdChanged;
+
 	}
 
 	protected override void Detach()
 	{
+		SemanticControl.IdChanged -= OnIdChanged;
 	}
+
+	public override float2 GetMarginSize( LayoutParams lp ) {
+		return float2(30);
+	}
+
+	void OnIdChanged(object sender, ValueChangedArgs<string> args)
+	{
+		if (args.Value != null) {
+			LoadVideoId(ytid, args.Value);
+		}
+	}
+
+
 }
 
 
