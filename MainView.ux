@@ -1,0 +1,10 @@
+<App Theme="NativeWithFallback">
+	<ClientPanel>
+		<StackPanel>
+			<YouTubeThumbnail Text="GMail Tap" Id="1KhZKNZO8mQ">
+				<YouTubeThumbnailImpl />
+			</YouTubeThumbnail>
+		</StackPanel>
+	</ClientPanel>
+</App>
+

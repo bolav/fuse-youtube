@@ -1,0 +1,6 @@
+<Package>
+<Extensions Backend="CPlusPlus" Condition="Android">
+    <CopyFile Name="libs/android/libs/YouTubeAndroidPlayerApi.jar" TargetName="@(Java.LibsDirectory)/YouTubeAndroidPlayerApi.jar" />
+</Extensions>
+
+</Package>
