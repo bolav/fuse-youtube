@@ -10,7 +10,7 @@ using global::iOS.UIKit;
 extern (Android)
 public class YouTubeThumbnailImpl : Fuse.Android.Controls.Control<YouTubeThumbnail>
 {
-	global::Android.android.widget.Button _buttonView;
+	global::Android.android.view.View _thumbview;
 	Java.Object thumb;
 
 	internal sealed override global::Android.android.view.View CreateInternal()
@@ -19,13 +19,11 @@ public class YouTubeThumbnailImpl : Fuse.Android.Controls.Control<YouTubeThumbna
 		{
 			thumb = CreateThumb();
 			debug_log thumb;
-			_buttonView = new global::Android.android.widget.Button(Android.android.app.Activity.GetAppActivity());
-			_buttonView.setHorizontallyScrolling(false);
-			_buttonView.setEllipsize(null);
+			_thumbview = (global::Android.android.view.View)thumb;
 		}
 
 		//OnParamChanged(null,null);
-		return _buttonView;
+		return _thumbview;
 	}
 
 	[Foreign(Language.Java)]
