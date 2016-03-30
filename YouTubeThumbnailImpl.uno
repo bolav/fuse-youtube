@@ -18,14 +18,24 @@ public class YouTubeThumbnailImpl : Fuse.Android.Controls.Control<YouTubeThumbna
 		if (thumb == null)
 		{
 			thumb = CreateThumb();
+			debug_log "Thumb is:";
 			debug_log thumb;
-			_thumbview = (global::Android.android.view.View)thumb;
+			_thumbview = new NativeView(Android.android.app.Activity.GetAppActivity(), thumb);
+			_thumbview = new global::Android.android.widget.Button(Android.android.app.Activity.GetAppActivity());
 		}
 
 		//OnParamChanged(null,null);
 		return _thumbview;
 	}
 
+	/*
+	+
++dependencies {
++    compile files('src/main/libs/YouTubeAndroidPlayerApi.jar')
++}
+	*/
+
+	[Require("Gradle.Dependencies.Compile","files('src/main/libs/YouTubeAndroidPlayerApi.jar')")]
 	[Foreign(Language.Java)]
 	public Java.Object CreateThumb () 
 	@{

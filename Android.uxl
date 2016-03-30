@@ -1,6 +1,7 @@
 <Package>
 <Extensions Backend="CPlusPlus" Condition="Android">
     <CopyFile Name="libs/android/libs/YouTubeAndroidPlayerApi.jar" TargetName="@(Java.LibsDirectory)/YouTubeAndroidPlayerApi.jar" />
+    <ProcessFile Name="Android/build.gradle" TargetName="@(Project.Name)/app/build.gradle" />
 </Extensions>
 
 </Package>
