@@ -21,7 +21,7 @@ public class YouTubeThumbnailImpl : Fuse.Android.Controls.Control<YouTubeThumbna
 			debug_log "Thumb is:";
 			debug_log thumb;
 			_thumbview = new NativeView(Android.android.app.Activity.GetAppActivity(), thumb);
-			_thumbview = new global::Android.android.widget.Button(Android.android.app.Activity.GetAppActivity());
+			// _thumbview = new global::Android.android.widget.Button(Android.android.app.Activity.GetAppActivity());
 		}
 
 		//OnParamChanged(null,null);
@@ -52,22 +52,34 @@ public class YouTubeThumbnailImpl : Fuse.Android.Controls.Control<YouTubeThumbna
 	}
 }
 
-[ForeignInclude(Language.ObjC, "YTPlayerView.h")]
+[ForeignInclude(Language.ObjC, "YouTube.iOS.Delegate.h")]
+[Require("Source.Import","YTPlayerView.h")]
 extern (iOS)
 public class YouTubeThumbnailImpl : Fuse.iOS.Controls.Control<YouTubeThumbnail> {
 
 	iOS.UIKit.UIView _view;
 	ObjC.ID ytid;
+	ObjC.ID _delegate;
 
 	internal override UIView CreateInternal()
 	{
 		if (_view == null)
 		{
+			_delegate = CreateDelegate();
 			ytid = CreateView();
+			SetDelegate(ytid, _delegate);
 			_view = new iOS.UIKit.UIView(ytid);
 		}
 		return _view;
 	}
+
+	[Foreign(Language.ObjC)]
+	public ObjC.ID CreateDelegate ()
+	@{
+		iOSDelegate *d = [[iOSDelegate alloc] init];
+		[d setFuseimpl:_this];
+		return d;
+	@}
 
 	[Foreign(Language.ObjC)]
 	public ObjC.ID CreateView ()
@@ -77,9 +89,22 @@ public class YouTubeThumbnailImpl : Fuse.iOS.Controls.Control<YouTubeThumbnail> 
 	@}
 
 	[Foreign(Language.ObjC)]
+	public void SetDelegate (ObjC.ID ytp, ObjC.ID del)
+	@{
+		[ytp setDelegate:del];
+	@}
+
+    [Require("Entity","YouTubeThumbnailImpl.OnReady()")]
+	[Foreign(Language.ObjC)]
 	public void LoadVideoId (ObjC.ID ytpv, string videoid)
 	@{
 		[ytpv loadWithVideoId:videoid];
+	@}
+
+	[Foreign(Language.ObjC)]
+	public void Play (ObjC.ID ytpv)
+	@{
+		[ytpv playVideo];
 	@}
 
 	protected override void Attach()
@@ -104,6 +129,11 @@ public class YouTubeThumbnailImpl : Fuse.iOS.Controls.Control<YouTubeThumbnail> 
 		if (args.Value != null) {
 			LoadVideoId(ytid, args.Value);
 		}
+	}
+
+	void OnReady()
+	{
+		Play(ytid);
 	}
 
 

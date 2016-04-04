@@ -1,0 +1,36 @@
+{
+  "RootNamespace":"",
+  "Packages": [
+        "Fuse.Animations",
+        "Fuse.BasicTheme",
+        "Fuse.Themes",
+        "Fuse.Controls",
+        "Fuse.Designer",
+        "Fuse.Drawing",
+        "Fuse.Drawing.Primitives",
+        "Fuse.Effects",
+        "Fuse.Elements",
+        "Fuse.Entities",
+        "Fuse.Gestures",
+        "Fuse.Navigation",
+        "Fuse.Scripting",
+        "Fuse.Shapes",
+        "Fuse.Triggers",
+        "Fuse.Reactive",
+        "Fuse.Android",
+        "Fuse.Desktop",
+        "Fuse.iOS",
+        "Fuse.UserEvents",
+        "FuseCore",
+        "Uno.Collections",
+        "Uno.Geometry",
+        "Android",
+        "Experimental.iOS"
+  ],
+  "Includes": [
+    "*.uxl",
+    "*.uno",
+    "YouTube.iOS.Delegate.h:ObjCHeader:iOS",
+    "YouTube.iOS.Delegate.mm:ObjCSource:iOS"
+  ]
+}
