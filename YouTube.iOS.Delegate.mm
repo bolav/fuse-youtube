@@ -10,11 +10,10 @@
 @implementation iOSDelegate
 
 - (void)playerView:(nonnull YTPlayerView *)playerView didChangeToState:(YTPlayerState)state {
-	NSLog(@"didChangeToState");
+	@{YouTubeThumbnailImpl:Of(self.fuseimpl).OnPlayerStateChanged(int):Call(state)};
 }
 
 - (void)playerViewDidBecomeReady:(nonnull YTPlayerView *)playerView {
-	NSLog(@"didBecomeReady");
 	@{YouTubeThumbnailImpl:Of(self.fuseimpl).OnReady():Call()};
 }
 

@@ -30,4 +30,25 @@ public class YouTubeThumbnail : Panel
 			IdChanged(this, new ValueChangedArgs<string>(value, orig));
 	}
 
+
+	public event ValueChangedHandler<int> StateChanged;
+
+	[UXValueChangedEvent("SetState", "StateChanged")]
+	public int State {
+	        get;
+	        set;
+	}
+
+	public void SetState(int value, object origin)
+	{
+	        State = value;
+	        OnStateChanged(value, origin);
+	}
+
+	void OnStateChanged(int value, object orig)
+	{
+		if (StateChanged != null)
+			StateChanged(this, new ValueChangedArgs<int>(value, orig));
+	}
+
 }

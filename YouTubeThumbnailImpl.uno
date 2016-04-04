@@ -6,7 +6,7 @@ using Uno.Compiler.ExportTargetInterop;
 using global::iOS.UIKit;
 
 [ForeignInclude(Language.Java,
-                "android.app.Activity")]
+				"android.app.Activity")]
 extern (Android)
 public class YouTubeThumbnailImpl : Fuse.Android.Controls.Control<YouTubeThumbnail>
 {
@@ -31,7 +31,7 @@ public class YouTubeThumbnailImpl : Fuse.Android.Controls.Control<YouTubeThumbna
 	/*
 	+
 +dependencies {
-+    compile files('src/main/libs/YouTubeAndroidPlayerApi.jar')
++	compile files('src/main/libs/YouTubeAndroidPlayerApi.jar')
 +}
 	*/
 
@@ -94,7 +94,8 @@ public class YouTubeThumbnailImpl : Fuse.iOS.Controls.Control<YouTubeThumbnail> 
 		[ytp setDelegate:del];
 	@}
 
-    [Require("Entity","YouTubeThumbnailImpl.OnReady()")]
+	[Require("Entity","YouTubeThumbnailImpl.OnReady()")]
+	[Require("Entity","YouTubeThumbnailImpl.OnPlayerStateChanged(int)")]
 	[Foreign(Language.ObjC)]
 	public void LoadVideoId (ObjC.ID ytpv, string videoid)
 	@{
@@ -112,12 +113,14 @@ public class YouTubeThumbnailImpl : Fuse.iOS.Controls.Control<YouTubeThumbnail> 
 		CreateInternal();
 		LoadVideoId(ytid, SemanticControl.Id);
 		SemanticControl.IdChanged += OnIdChanged;
+		SemanticControl.StateChanged += OnStateChanged;
 
 	}
 
 	protected override void Detach()
 	{
 		SemanticControl.IdChanged -= OnIdChanged;
+		SemanticControl.StateChanged -= OnStateChanged;
 	}
 
 	public override float2 GetMarginSize( LayoutParams lp ) {
@@ -131,9 +134,28 @@ public class YouTubeThumbnailImpl : Fuse.iOS.Controls.Control<YouTubeThumbnail> 
 		}
 	}
 
+	void OnPlayerStateChanged(int state)
+	{
+		debug_log("State changed to  " +state);
+		SemanticControl.SetState(state, this);
+	}
+
 	void OnReady()
 	{
-		Play(ytid);
+		SemanticControl.SetState(101, this);
+		// Play(ytid);
+	}
+
+	void OnStateChanged(object sender, ValueChangedArgs<int> args)
+	{
+		if (args.Origin != this) {
+			if (args.Value == 1002) {
+				Play(ytid);
+			}
+			else {
+				debug_log("We should change player state to " +args.Value);
+			}
+		}
 	}
 
 
