@@ -4,6 +4,8 @@ using Uno.Collections;
 using Fuse;
 using Uno.Compiler.ExportTargetInterop;
 using global::iOS.UIKit;
+using Android.android.view;
+using Android.Base.Wrappers;
 
 [ForeignInclude(Language.Java,
 				"android.app.Activity")]
@@ -20,8 +22,7 @@ public class YouTubeThumbnailImpl : Fuse.Android.Controls.Control<YouTubeThumbna
 			thumb = CreateThumb();
 			debug_log "Thumb is:";
 			debug_log thumb;
-			_thumbview = new NativeView(Android.android.app.Activity.GetAppActivity(), thumb);
-			// _thumbview = new global::Android.android.widget.Button(Android.android.app.Activity.GetAppActivity());
+			_thumbview = new View(((JWrapper)thumb)._GetJavaObject(), View.typeof(), false, false);
 		}
 
 		//OnParamChanged(null,null);
