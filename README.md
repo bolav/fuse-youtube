@@ -1,5 +1,5 @@
 Fuse Youtube bindings
-====================
+=====================
 
 Library to use [Youtube](https://www.youtube.com/) in [Fuse](http://www.fusetools.com/).
 
@@ -12,6 +12,9 @@ Using [fusepm](https://github.com/bolav/fusepm)
 
 ## Usage:
 
+In your UX
+
+    <YouTubeThumbnail Text="GMail Tap" Id="1KhZKNZO8mQ" Height="200" />
 
 
 ## Documentation
