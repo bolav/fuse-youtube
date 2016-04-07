@@ -1,5 +1,5 @@
-<App Theme="NativeWithFallback">
-	<ClientPanel>
+<App Theme="NativeWithFallback" Background="#fff">
+	<ClientPanel Background="#fff">
 		<StackPanel>
 			<YouTubeThumbnail Text="GMail Tap" Id="1KhZKNZO8mQ" Height="200" />
 		</StackPanel>

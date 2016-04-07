@@ -4,8 +4,6 @@ using Uno.Collections;
 using Fuse;
 using Uno.Compiler.ExportTargetInterop;
 using global::iOS.UIKit;
-using Android.android.view;
-using Android.Base.Wrappers;
 
 [ForeignInclude(Language.Java,
 				"android.app.Activity")]
@@ -22,7 +20,11 @@ public class YouTubeThumbnailImpl : Fuse.Android.Controls.Control<YouTubeThumbna
 			thumb = CreateThumb();
 			debug_log "Thumb is:";
 			debug_log thumb;
-			_thumbview = new View(((JWrapper)thumb)._GetJavaObject(), View.typeof(), false, false);
+			_thumbview = new Android.android.view.View(
+				((Android.Base.Wrappers.JWrapper)thumb)._GetJavaObject(), 
+				typeof(Android.android.view.View), 
+				false, 
+				false);
 		}
 
 		//OnParamChanged(null,null);
@@ -41,7 +43,9 @@ public class YouTubeThumbnailImpl : Fuse.Android.Controls.Control<YouTubeThumbna
 	public Java.Object CreateThumb () 
 	@{
 		Activity a = com.fuse.Activity.getRootActivity();
-		return new com.google.android.youtube.player.YouTubeThumbnailView(a);
+		com.google.android.youtube.player.YouTubeThumbnailView view = new com.google.android.youtube.player.YouTubeThumbnailView(a);
+		view.initialize("AIzaSyB7vhj7FmGL37VJyKMYoSXwR4hPvUrM4wc", null);
+		return view;
 	@}
 
 	protected override void Attach()

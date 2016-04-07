@@ -28,9 +28,11 @@
         "Experimental.iOS"
   ],
   "Includes": [
-    "*.uxl",
+    "YouTube-CocoaPods.uxl",
+    "YouTube-Android-Hacks.uxl",
     "*.uno",
     "YouTube.iOS.Delegate.h:ObjCHeader:iOS",
     "YouTube.iOS.Delegate.mm:ObjCSource:iOS"
-  ]
+  ],
+  "Projects": ["https://github.com/bolav/fuse-cocoapods"]
 }
