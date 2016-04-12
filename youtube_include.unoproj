@@ -34,5 +34,8 @@
     "YouTube.iOS.Delegate.h:ObjCHeader:iOS",
     "YouTube.iOS.Delegate.mm:ObjCSource:iOS"
   ],
-  "Projects": ["https://github.com/bolav/fuse-cocoapods"]
+  "FusePM": {
+    "Dependencies" : [
+      "https://github.com/bolav/fuse-cocoapods"
+    ]}
 }

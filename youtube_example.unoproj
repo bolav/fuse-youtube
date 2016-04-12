@@ -31,5 +31,9 @@
     "*.ux",
     "*.uxl",
     "*.uno"
-  ]
+  ],
+  "FusePM": {
+    "Dependencies" : [
+      "https://github.com/bolav/fuse-cocoapods"
+    ]}
 }
