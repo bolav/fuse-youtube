@@ -30,7 +30,9 @@
   "Includes": [
     "*.ux",
     "*.uxl",
-    "*.uno"
+    "*.uno",
+    "YouTube.iOS.Delegate.h:ObjCHeader:iOS",
+    "YouTube.iOS.Delegate.mm:ObjCSource:iOS"
   ],
   "FusePM": {
     "Dependencies" : [
