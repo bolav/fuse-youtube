@@ -1,31 +1,32 @@
 {
-  "RootNamespace":"",
+  "Name":"YoutubeExample",
+  "RootNamespace": "",
   "Packages": [
-        "Fuse.Animations",
-        "Fuse.BasicTheme",
-        "Fuse.Themes",
-        "Fuse.Controls",
-        "Fuse.Designer",
-        "Fuse.Drawing",
-        "Fuse.Drawing.Primitives",
-        "Fuse.Effects",
-        "Fuse.Elements",
-        "Fuse.Entities",
-        "Fuse.Gestures",
-        "Fuse.Navigation",
-        "Fuse.Scripting",
-        "Fuse.Shapes",
-        "Fuse.Triggers",
-        "Fuse.Reactive",
-        "Fuse.Android",
-        "Fuse.Desktop",
-        "Fuse.iOS",
-        "Fuse.UserEvents",
-        "FuseCore",
-        "Uno.Collections",
-        "Uno.Geometry",
-        "Android",
-        "Experimental.iOS"
+    "Fuse.Animations",
+    "Fuse.BasicTheme",
+    "Fuse.Themes",
+    "Fuse.Controls",
+    "Fuse.Designer",
+    "Fuse.Drawing",
+    "Fuse.Drawing.Primitives",
+    "Fuse.Effects",
+    "Fuse.Elements",
+    "Fuse.Entities",
+    "Fuse.Gestures",
+    "Fuse.Navigation",
+    "Fuse.Scripting",
+    "Fuse.Shapes",
+    "Fuse.Triggers",
+    "Fuse.Reactive",
+    "Fuse.Android",
+    "Fuse.Desktop",
+    "Fuse.iOS",
+    "Fuse.UserEvents",
+    "FuseCore",
+    "Uno.Collections",
+    "Uno.Geometry",
+    "Android",
+    "Experimental.iOS"
   ],
   "Includes": [
     "*.ux",
@@ -35,7 +36,14 @@
     "YouTube.iOS.Delegate.mm:ObjCSource:iOS"
   ],
   "FusePM": {
-    "Dependencies" : [
+    "Dependencies": [
       "https://github.com/bolav/fuse-cocoapods"
-    ]}
+    ]
+  },
+  "Projects": [
+    "fuse_modules/bolav/fuse-cocoapods/cocoapods_include.unoproj"
+  ],
+  "Excludes": [
+    "fuse_modules/"
+  ]
 }
