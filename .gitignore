@@ -2,3 +2,4 @@
 build/
 libs/android
 libs/dl
+fuse_modules/
